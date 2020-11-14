@@ -1,0 +1,5 @@
+--insert when building the application
+--INSERT INTO asset(code) values("PETR4");
+--INSERT INTO asset(code) values("VALE3");
+--INSERT INTO asset(code) values("SAPR11");
+--INSERT INTO asset(code) values("TRPL4");

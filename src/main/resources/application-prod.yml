@@ -1,0 +1,11 @@
+server:
+  port: 8082
+
+spring:
+  jpa:
+    generate-ddl: true
+    hibernate.ddl-auto: update
+  datasource:
+    url: jdbc:mysql://db-smartinvest.cnkw6talxpfq.sa-east-1.rds.amazonaws.com:3306/smartinvest?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: dlt62br5

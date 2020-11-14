@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+spring:
+  jpa:
+    generate-ddl: true
+    hibernate.ddl-auto: update
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/smartinvest?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: root
