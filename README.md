@@ -5,8 +5,9 @@ AWS application test featuring a microservice to handle assets transactions
 
 ## AWS Technologies used
 
-* EC2
+* EC2/EBS
 * RDS
-* ELB
 * S3
+* CodePipeline
+* ELB
 * IAM
