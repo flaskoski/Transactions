@@ -17,3 +17,8 @@ artifacts:
     - target/Transactions-0.1-SNAPSHOT.jar
     - appspec.yml
   discard-paths: yes
+  secondary-artifacts:
+    artifact1:
+      files:
+        - Scripts/runApp.sh
+      discard-paths: no

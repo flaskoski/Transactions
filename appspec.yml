@@ -3,6 +3,7 @@ os: linux
 files:
   - source: ./Transactions-0.1-SNAPSHOT.jar
     destination: /tmp
+
 hooks:
   AfterInstall:
     - location: Scripts/runApp.sh
