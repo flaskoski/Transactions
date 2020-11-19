@@ -6,4 +6,4 @@ files:
 
 hooks:
   AfterInstall:
-    - location: Scripts/runApp.sh
+    - location: runApp.sh
