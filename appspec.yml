@@ -5,5 +5,7 @@ files:
     destination: /tmp
 
 hooks:
-  AfterInstall:
+  ApplicationStop:
+    - location: stopApp.sh
+  ApplicationStart:
     - location: runApp.sh

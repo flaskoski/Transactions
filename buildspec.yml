@@ -17,4 +17,5 @@ artifacts:
     - target/Transactions-0.1-SNAPSHOT.jar
     - appspec.yml
     - Scripts/runApp.sh
+    - Scripts/stopApp.sh
   discard-paths: yes
