@@ -27,17 +27,14 @@ public class AssetController {
     AssetRepository assetRepository;
 
     @GetMapping
-    public Page<Asset> getAllAssets(@RequestParam(required = false) String code, @RequestParam int pageNumber, @RequestParam int quantity, String sortBy){
+    public Page<Asset> getAllAssets(@RequestParam int pageNumber, @RequestParam int quantity, String sortBy){
         Pageable page;
         if(sortBy == null || sortBy != "code")
             page = PageRequest.of(pageNumber, quantity);
         else
             page = PageRequest.of(pageNumber, quantity, Sort.Direction.ASC, sortBy);
 
-        if(code == null)
-            return assetRepository.findAll(page);
-        else
-            return assetRepository.findByCode(code, page);
+        return assetRepository.findAll(page);
     }
 
     @PostMapping

@@ -12,9 +12,28 @@ public class Transaction {
     Asset asset;
     Integer shares_number;
     Double price;
+    LocalDate date;
 
     @Enumerated(EnumType.STRING)
     TransactionType type;
+
+    public Transaction(){}
+
+    public Transaction(Asset asset, Integer shares_number, Double price, TransactionType transactionType, LocalDate date){
+        this.asset = asset;
+        this.shares_number = shares_number;
+        this.price = price;
+        this.type = transactionType;
+        this.date = date;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public LocalDate getDate() {
         return date;
@@ -24,7 +43,6 @@ public class Transaction {
         this.date = date;
     }
 
-    LocalDate date;
 
     public Asset getAsset() {
         return asset;

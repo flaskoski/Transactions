@@ -6,6 +6,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AssetRepository extends JpaRepository<Asset, Long> {
-
-    Page<Asset> findByCode(String code, Pageable page);
+    Asset findByCode(String code);
 }

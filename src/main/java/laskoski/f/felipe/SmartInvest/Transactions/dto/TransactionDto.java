@@ -14,7 +14,7 @@ public class TransactionDto {
     Double price;
     String type;
 
-    TransactionDto(Transaction transaction){
+    public TransactionDto(Transaction transaction){
         this.asset = transaction.getAsset().getCode();
         this. shares_number = transaction.getShares_number();
         this.price = transaction.getPrice();
