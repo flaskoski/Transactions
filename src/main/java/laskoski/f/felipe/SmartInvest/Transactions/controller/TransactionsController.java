@@ -45,7 +45,7 @@ public class TransactionsController {
             return TransactionDto.converter(transactionRepository.findByAssetCode(code, page));
     }
     @PostMapping
-    @CacheEvict(value = "all-transactions")
+    @CacheEvict(value = "all-transactions", allEntries = true)
     public ResponseEntity<TransactionDto> addTransaction(@RequestBody @Valid TransactionForm form, UriComponentsBuilder uriBuilder){
         Transaction newTransaction = form.convert(assetRepository);
         transactionRepository.save(newTransaction);
