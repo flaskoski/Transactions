@@ -27,14 +27,14 @@ public class AssetController {
     AssetRepository assetRepository;
 
     @GetMapping
-    public Page<Asset> getAllAssets(@RequestParam int pageNumber, @RequestParam int quantity, String sortBy){
-        Pageable page;
-        if(sortBy == null || sortBy != "code")
-            page = PageRequest.of(pageNumber, quantity);
+    public Page<Asset> getAllAssets(@RequestParam int page, @RequestParam int size, String sortBy){
+        Pageable pageable;
+        if(sortBy == null || !sortBy.equals("code"))
+            pageable = PageRequest.of(page, size);
         else
-            page = PageRequest.of(pageNumber, quantity, Sort.Direction.ASC, sortBy);
+            pageable = PageRequest.of(page, size, Sort.Direction.ASC, sortBy);
 
-        return assetRepository.findAll(page);
+        return assetRepository.findAll(pageable);
     }
 
     @PostMapping
@@ -49,10 +49,9 @@ public class AssetController {
     @GetMapping("/{id}")
     public ResponseEntity<AssetDto> getAsset(@PathVariable Long id){
         Optional<Asset> asset = assetRepository.findById(id);
-        if(asset.isPresent())
-            return ResponseEntity.ok(new AssetDto(asset.get()));
-        else
-            return ResponseEntity.notFound().build();
+        
+        return asset.map(value -> ResponseEntity.ok(new AssetDto(value)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")

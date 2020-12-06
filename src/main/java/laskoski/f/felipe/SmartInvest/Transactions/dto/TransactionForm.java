@@ -9,6 +9,8 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 public class TransactionForm {
     @NotNull @NotEmpty @Length(min = 5, max = 8)
@@ -26,9 +28,12 @@ public class TransactionForm {
         this.asset = asset;
     }
 
-    public Transaction convert(AssetRepository assetRepository) {
-        return new Transaction(assetRepository.findByCode(this.asset), this.shares_number,
-                this.price, TransactionType.valueOf(this.type), this.date);
+    public Transaction convert(AssetRepository assetRepository) throws NoSuchElementException {
+        Optional<Asset> possibleAsset = assetRepository.findByCode(this.asset);
+        if(possibleAsset.isPresent())
+            return new Transaction(possibleAsset.get(), this.shares_number,
+                    this.price, TransactionType.valueOf(this.type), this.date);
+        else throw new NoSuchElementException("Asset of the transaction was not found!");
     }
 
     public Asset updateFromRepository(Long id, AssetRepository assetRepository) {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 //Handle exceptions
@@ -26,6 +27,13 @@ public class ValidationErrorHandler {
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         return fieldErrors.stream().map(e ->
                 new FormErrorDto(e.getField(),
+                        //message for the language of the current location
                         messageSource.getMessage(e, LocaleContextHolder.getLocale()))).collect(Collectors.toList());
+    }
+
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NoSuchElementException.class)
+    public String handle(NoSuchElementException e){
+        return e.getMessage();
     }
 }
