@@ -5,6 +5,7 @@ import laskoski.f.felipe.SmartInvest.Transactions.dto.AssetForm;
 import laskoski.f.felipe.SmartInvest.Transactions.model.Asset;
 import laskoski.f.felipe.SmartInvest.Transactions.repository.AssetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -49,7 +50,6 @@ public class AssetController {
     @GetMapping("/{id}")
     public ResponseEntity<AssetDto> getAsset(@PathVariable Long id){
         Optional<Asset> asset = assetRepository.findById(id);
-        
         return asset.map(value -> ResponseEntity.ok(new AssetDto(value)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }

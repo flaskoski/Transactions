@@ -1,6 +1,6 @@
 # Transactions
 
-AWS application test featuring a microservice to handle assets transactions
+AWS application practice featuring a microservice to handle assets transactions
 
 
 ## AWS Technologies used
@@ -11,3 +11,4 @@ AWS application test featuring a microservice to handle assets transactions
 * CodePipeline
 * ELB
 * IAM
+* Secrets Manager
