@@ -1,0 +1,24 @@
+<div th:switch="${assets}" xmlns:th="http://www.w3.org/1999/xhtml">
+    <h2> Hello world!</h2>
+    <h2 th:case="null">No users yet!</h2>
+    <div th:case="*">
+        <h2>Assets</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="asset : ${assets}">
+                <td th:text="${asset.id}"></td>
+                <td th:text="${asset.code}"></td>
+                <td><a th:href="@{/edit/{id}(id=${asset.id})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${asset.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/signup">Add a new asset</a></p>
+</div>

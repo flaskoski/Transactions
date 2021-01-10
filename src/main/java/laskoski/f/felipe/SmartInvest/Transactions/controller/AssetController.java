@@ -5,7 +5,6 @@ import laskoski.f.felipe.SmartInvest.Transactions.dto.AssetForm;
 import laskoski.f.felipe.SmartInvest.Transactions.model.Asset;
 import laskoski.f.felipe.SmartInvest.Transactions.repository.AssetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +16,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 @RestController

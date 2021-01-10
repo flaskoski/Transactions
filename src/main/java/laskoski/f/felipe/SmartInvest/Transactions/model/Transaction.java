@@ -1,6 +1,7 @@
 package laskoski.f.felipe.SmartInvest.Transactions.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Entity
@@ -10,11 +11,13 @@ public class Transaction {
 
     @ManyToOne
     Asset asset;
+    @NotBlank(message = "Number of shares is a mandatory field")
     Integer shares_number;
+    @NotBlank
     Double price;
+    @NotBlank
     LocalDate date;
-
-    @Enumerated(EnumType.STRING)
+    @NotBlank @Enumerated(EnumType.STRING)
     TransactionType type;
 
     public Transaction(){}
