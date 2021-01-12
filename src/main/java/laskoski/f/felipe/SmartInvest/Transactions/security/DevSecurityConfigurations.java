@@ -2,17 +2,16 @@ package laskoski.f.felipe.SmartInvest.Transactions.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@Profile(value = {"prod", "test"})
+@Profile("dev")
 @EnableWebSecurity
 @Configuration
-public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
+public class DevSecurityConfigurations extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         super.configure(auth);
