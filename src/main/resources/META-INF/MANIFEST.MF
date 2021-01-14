@@ -1,2 +1,4 @@
 Manifest-Version: 1.0
-Main-Class: laskoski.f.felipe.SmartInvest.Transactions.TransactionsApplication
+Main-Class: laskoski.f.felipe.SmartInvest.Transactions.TransactionsAppli
+ cation
+

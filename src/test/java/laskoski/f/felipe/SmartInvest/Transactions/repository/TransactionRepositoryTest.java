@@ -34,7 +34,7 @@ public class TransactionRepositoryTest {
         Pageable pageable = PageRequest.of(0, 10,  Sort.Direction.ASC, "asset");
         Page<Transaction> transactionPage = transactionRepository.findByAssetCode(code, pageable);
         Assert.assertNotNull(transactionPage);
-        if (!transactionPage.isEmpty())
+        if (transactionPage.stream().findFirst().isPresent())
             Assert.assertEquals(code, transactionPage.stream().findFirst().get().getAsset().getCode());
     }
 
