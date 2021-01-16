@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-tra
+  labels: 
+    app: pod-transactions
+spec:
+  containers:
+    - name: transactions
+      image: smartinvest/transactions:v1
+      ports:
+        - containerPort: 8080
+      env:
+        - name: MYSQL_HOST
+          value: "192.168.0.7" 
+          # value: "192.168.65.3"

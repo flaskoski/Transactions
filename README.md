@@ -12,3 +12,11 @@ AWS application practice featuring a microservice to handle assets transactions
 * ELB
 * IAM
 * Secrets Manager
+* Lambda
+
+
+## Configurations available for deployment on:
+
+* Regular instance (EC2)
+* Docker (ECS)
+* Kubernetes (EKS)
