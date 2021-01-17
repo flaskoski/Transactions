@@ -23,6 +23,6 @@ AWS application practice featuring a microservice to handle assets transactions
 
 ## API Documentation
 
-On http://host/swagger-ui/index.html
+Accessible on http://host/context-path/swagger-ui/index.html ([Spring Fox](https://springfox.github.io/springfox/))
 
 ![API documentation print](https://github.com/flaskoski/Transactions/blob/master/images/Api-documentation.png)
