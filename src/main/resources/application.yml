@@ -3,6 +3,13 @@ spring:
     active: @activatedProperties@
 #    active: prod
 
+#SpringBootAdmin server address
+  boot:
+    admin:
+      client:
+        url: http://${SPRING_ADMIN_URL:localhost}:${SPRING_ADMIN_PORT:8081}
+
+#expose actuator endpoints
 management:
   endpoint:
     health:

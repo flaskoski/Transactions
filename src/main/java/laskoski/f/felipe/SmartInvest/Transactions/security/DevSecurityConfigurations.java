@@ -2,6 +2,7 @@ package laskoski.f.felipe.SmartInvest.Transactions.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -26,6 +27,7 @@ public class DevSecurityConfigurations extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 //add .cors() --> http.cors().[...] to allow CORS to be processed
         http.authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                 .antMatchers("/**").permitAll()
 //        https://docs.spring.io/spring-security/site/docs/3.2.0.CI-SNAPSHOT/reference/html/csrf.html
                 .and().csrf().disable();
