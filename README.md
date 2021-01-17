@@ -20,3 +20,9 @@ AWS application practice featuring a microservice to handle assets transactions
 * Regular instance (EC2)
 * Docker (ECS)
 * Kubernetes (EKS)
+
+## API Documentation
+
+On http://host/swagger-ui/index.html
+
+![API documentation print](https://github.com/flaskoski/Transactions/blob/master/images/Api-documentation.png)
