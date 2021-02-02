@@ -14,12 +14,20 @@ public class TransactionDto {
     Double price;
     String type;
 
+
     public TransactionDto(Transaction transaction){
         this.asset = transaction.getAsset().getCode();
-        this. shares_number = transaction.getShares_number();
+        this.shares_number = transaction.getShares_number();
         this.price = transaction.getPrice();
         this.type = transaction.getType().name();
         this.date = transaction.getDate();
+    }
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public String getAsset() {
