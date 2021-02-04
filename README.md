@@ -2,6 +2,13 @@
 
 AWS application practice featuring a microservice to handle assets transactions
 
+## Other repositories related to the Smart Invest Application
+
+* [SmartInvest UI (React)](https://github.com/flaskoski/SmartInvestUI)
+
+* [GetQuotes Function (Lambda)](https://github.com/flaskoski/GetQuotes-lambda)
+
+* [Start/Stop Instances (Lambda)](https://github.com/flaskoski/ec2-stop)
 
 ## AWS Technologies used
 
