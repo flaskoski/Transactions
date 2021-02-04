@@ -14,6 +14,9 @@ AWS application practice featuring a microservice to handle assets transactions
 * Secrets Manager
 * Lambda
 
+## Transactions App in the Smart Invest Architecture
+
+![](https://github.com/flaskoski/Transactions/blob/master/images/diagram.PNG)
 
 ## Configurations available for deployment on:
 
