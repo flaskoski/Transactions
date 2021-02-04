@@ -10,6 +10,8 @@ AWS application practice featuring a microservice to handle assets transactions
 
 * [Start/Stop Instances (Lambda)](https://github.com/flaskoski/ec2-stop)
 
+* [SpringBootAdmin Server](https://github.com/flaskoski/SpringBootAdminServer)
+
 ## AWS Technologies used
 
 * EC2/EBS
