@@ -1,11 +1,11 @@
 package laskoski.f.felipe.SmartInvest.Transactions.dto;
 
-//import laskoski.f.felipe.SmartInvest.Transactions.model.Asset;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import laskoski.f.felipe.SmartInvest.Transactions.model.Transaction;
 import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
-import java.util.stream.Collectors;
 
 public class TransactionDto {
     LocalDate date;
