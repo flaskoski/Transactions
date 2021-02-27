@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import java.time.LocalDate;
 
 public class TransactionDto {
+    Long id;
     LocalDate date;
     String asset;
     Integer shares_number;
@@ -16,12 +17,21 @@ public class TransactionDto {
 
 
     public TransactionDto(Transaction transaction){
+        this.id = transaction.getId();
         this.asset = transaction.getAsset().getCode();
         this.shares_number = transaction.getShares_number();
         this.price = transaction.getPrice();
         this.type = transaction.getType().name();
         this.date = transaction.getDate();
     }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public LocalDate getDate() {
         return date;
     }

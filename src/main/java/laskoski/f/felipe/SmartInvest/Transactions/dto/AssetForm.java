@@ -12,6 +12,8 @@ public class AssetForm {
     @NotNull @NotEmpty @Length(min = 5, max = 8)
     String code;
 
+
+
     public String getCode() {
         return code;
     }

@@ -2,9 +2,15 @@ package laskoski.f.felipe.SmartInvest.Transactions.controller;
 
 import laskoski.f.felipe.SmartInvest.Transactions.dto.AssetDto;
 import laskoski.f.felipe.SmartInvest.Transactions.dto.AssetForm;
+import laskoski.f.felipe.SmartInvest.Transactions.dto.TransactionDto;
+import laskoski.f.felipe.SmartInvest.Transactions.dto.TransactionForm;
 import laskoski.f.felipe.SmartInvest.Transactions.model.Asset;
+import laskoski.f.felipe.SmartInvest.Transactions.model.Transaction;
 import laskoski.f.felipe.SmartInvest.Transactions.repository.AssetRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,11 +22,14 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping(path="/assets")
 public class AssetController {
+
+    Logger logger = LoggerFactory.getLogger(TransactionsController.class);
 
     @Autowired
     AssetRepository assetRepository;
@@ -43,6 +52,18 @@ public class AssetController {
 
         URI uri = uriBuilder.path("/assets/{id}").buildAndExpand(newAsset.getId()).toUri();
         return ResponseEntity.created(uri).body(new AssetDto(newAsset));
+    }
+
+    @PostMapping(path = "/many")
+    public ResponseEntity<TransactionDto> addMultipleAssets(@RequestBody @Valid List<AssetForm> formList, UriComponentsBuilder uriBuilder){
+        StringBuffer sb = new StringBuffer("Assets IDs added: ");
+        formList.forEach(form -> {
+            Asset newAsset = form.convert();
+            assetRepository.save(newAsset);
+            sb.append(newAsset.getId()+",");
+        });
+        logger.info(sb.toString());
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{id}")
