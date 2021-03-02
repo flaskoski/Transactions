@@ -1,6 +1,7 @@
 package laskoski.f.felipe.SmartInvest.Transactions.dto;
 
 import laskoski.f.felipe.SmartInvest.Transactions.model.Asset;
+import laskoski.f.felipe.SmartInvest.Transactions.model.AssetType;
 import laskoski.f.felipe.SmartInvest.Transactions.repository.AssetRepository;
 import org.hibernate.validator.constraints.Length;
 
@@ -11,8 +12,16 @@ import java.util.Optional;
 public class AssetForm {
     @NotNull @NotEmpty @Length(min = 5, max = 8)
     String code;
+    @NotEmpty
+    String type;
 
+    public String getType() {
+        return type;
+    }
 
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getCode() {
         return code;
@@ -23,7 +32,7 @@ public class AssetForm {
     }
 
     public Asset convert() {
-        return new Asset(this.code);
+        return new Asset(this.code, AssetType.valueOf(this.type));
     }
 
     public Asset updateFromRepository(Long id, AssetRepository assetRepository) {

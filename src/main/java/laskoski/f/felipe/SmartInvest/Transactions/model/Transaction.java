@@ -13,8 +13,8 @@ public class Transaction {
 
     @ManyToOne
     Asset asset;
-    @NotNull(message = "Number of shares is a mandatory field")
-    @Min(1)
+    //@NotNull(message = "Number of shares is a mandatory field")
+    //@Min(1)
     Integer shares_number;
     @NotNull(message = "Price is a mandatory field")
     Double price;

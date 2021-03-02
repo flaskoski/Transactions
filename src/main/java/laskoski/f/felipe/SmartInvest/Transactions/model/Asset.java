@@ -11,9 +11,20 @@ public class Asset {
     Long id;
     @NotNull @NotEmpty @Length(min = 5, max = 8)
     String code;
+    @Enumerated(EnumType.STRING)
+    AssetType type;
 
-    public Asset(String code) {
+    public AssetType getType() {
+        return type;
+    }
+
+    public void setType(AssetType type) {
+        this.type = type;
+    }
+
+    public Asset(String code, AssetType type) {
         this.code = code;
+        this.type = type;
     }
     public Asset(){}
 
