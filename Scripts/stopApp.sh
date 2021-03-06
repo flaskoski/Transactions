@@ -1,7 +1,4 @@
 #!/bin/bash
-cd /tmp
-FILE=./app.pid
-if [ -f "$FILE" ]; then
-  kill $(<$FILE)
-  rm $FILE
-fi
+echo "Killing process on port 8080"
+kill -9 $(lsof -t -i:80)
+echo "Done killing the process"
