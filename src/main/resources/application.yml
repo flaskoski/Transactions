@@ -1,4 +1,7 @@
 spring:
+  application:
+    name: Transactions
+
   profiles:
     active: @activatedProperties@
 #    active: prod
@@ -22,3 +25,5 @@ info:
   app:
     name: @project.name@
     version: @project.version@
+
+
