@@ -27,3 +27,11 @@ info:
     version: @project.version@
 
 
+cloud:
+  aws:
+    region:
+      #for SSM parameter store
+      static: sa-east-1
+    stack:
+      #not to search instance stack
+      auto: false

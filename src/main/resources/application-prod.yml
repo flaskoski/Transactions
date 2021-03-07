@@ -10,8 +10,3 @@ spring:
 # To use with Hikari (https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-configure-a-datasource)
     jdbc-url: jdbc:mysql://db-smartinvest.cnkw6talxpfq.sa-east-1.rds.amazonaws.com:3306/smartinvest?useTimezone=true&serverTimezone=UTC
     username: root
-cloud:
-  aws:
-    region:
-      #for SSM parameter store
-      static: sa-east-1
