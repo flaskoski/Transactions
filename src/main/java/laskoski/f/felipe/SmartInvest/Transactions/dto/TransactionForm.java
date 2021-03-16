@@ -15,6 +15,8 @@ import java.util.Optional;
 public class TransactionForm {
     @NotNull @NotEmpty @Length(min = 5, max = 8)
     String asset;
+    @NotEmpty
+    String username;
     Integer shares_number;
     Double price;
     String type;
@@ -31,7 +33,7 @@ public class TransactionForm {
     public Transaction convert(AssetRepository assetRepository) throws NoSuchElementException {
         Optional<Asset> possibleAsset = assetRepository.findByCode(this.asset);
         if(possibleAsset.isPresent())
-            return new Transaction(possibleAsset.get(), this.shares_number,
+            return new Transaction(this.username, possibleAsset.get(), this.shares_number,
                     this.price, TransactionType.valueOf(this.type), this.date);
         else throw new NoSuchElementException("Asset of the transaction was not found!");
     }
@@ -45,6 +47,14 @@ public class TransactionForm {
     public Asset update(Asset assetToUpdate) {
         assetToUpdate.setCode(this.asset);
         return assetToUpdate;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getType() {

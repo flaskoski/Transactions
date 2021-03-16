@@ -35,14 +35,14 @@ public class AssetController {
     AssetRepository assetRepository;
 
     @GetMapping
-    public Page<Asset> getAllAssets(@RequestParam int page, @RequestParam int size, String sortBy){
+    public Page<Asset> getAllAssets(@RequestParam int page, @RequestParam int size, @RequestParam String username, String sortBy){
         Pageable pageable;
         if(sortBy == null || !sortBy.equals("code"))
             pageable = PageRequest.of(page, size);
         else
             pageable = PageRequest.of(page, size, Sort.Direction.ASC, sortBy);
 
-        return assetRepository.findAll(pageable);
+        return assetRepository.findByUsername(username, pageable);
     }
 
     @PostMapping

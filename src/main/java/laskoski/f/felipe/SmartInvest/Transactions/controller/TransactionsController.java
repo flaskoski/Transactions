@@ -38,12 +38,11 @@ public class TransactionsController {
 //    @RequestMapping(path = "/transactions", method = RequestMethod.GET)
     @GetMapping
     @Cacheable(value = "all-transactions")
-    public Page<TransactionDto> getAllTransactions(@RequestParam(required = false) String code, @PageableDefault(sort="asset", direction = Sort.Direction.ASC) Pageable page){
-
+    public Page<TransactionDto> getAllTransactions(@RequestParam String username, @RequestParam(required = false) String code, @PageableDefault(sort="asset", direction = Sort.Direction.ASC) Pageable page){
         if(code == null)
-            return TransactionDto.converter(transactionRepository.findAll(page));
+            return TransactionDto.converter(transactionRepository.findByUsername(username, page));
         else
-            return TransactionDto.converter(transactionRepository.findByAssetCode(code, page));
+            return TransactionDto.converter(transactionRepository.findByUsernameAndAssetCode(username, code, page));
     }
     @PostMapping
     @CacheEvict(value = "all-transactions", allEntries = true)
@@ -70,6 +69,7 @@ public class TransactionsController {
 
 
     @DeleteMapping("{id}")
+    @CacheEvict(value = "all-transactions", allEntries = true)
     public ResponseEntity<?> removeTransaction(@PathVariable Long id){
         Optional<Transaction> transaction = transactionRepository.findById(id);
         if(transaction.isPresent()) {

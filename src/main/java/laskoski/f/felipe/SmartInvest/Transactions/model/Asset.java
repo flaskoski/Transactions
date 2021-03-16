@@ -1,6 +1,7 @@
 package laskoski.f.felipe.SmartInvest.Transactions.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -13,6 +14,8 @@ public class Asset {
     String code;
     @Enumerated(EnumType.STRING)
     AssetType type;
+    @NotBlank
+    String username;
 
     public AssetType getType() {
         return type;
@@ -22,9 +25,10 @@ public class Asset {
         this.type = type;
     }
 
-    public Asset(String code, AssetType type) {
+    public Asset(String username, String code, AssetType type) {
         this.code = code;
         this.type = type;
+        this.username = username;
     }
     public Asset(){}
 

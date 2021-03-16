@@ -1,5 +1,5 @@
 package laskoski.f.felipe.SmartInvest.Transactions.model;
 
 public enum AssetType {
-    Stocks, REIT //FII
+    Stocks, REIT, BDR //FII
 }

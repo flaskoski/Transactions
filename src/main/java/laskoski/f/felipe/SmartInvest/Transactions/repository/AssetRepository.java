@@ -9,4 +9,5 @@ import java.util.Optional;
 
 public interface AssetRepository extends JpaRepository<Asset, Long> {
     Optional<Asset> findByCode(String code);
+    Page<Asset> findByUsername(String username, Pageable pageable);
 }

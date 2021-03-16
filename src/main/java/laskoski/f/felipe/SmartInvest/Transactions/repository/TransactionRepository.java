@@ -9,5 +9,7 @@ import java.util.List;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
     Page<Transaction> findByAssetCode(String code, Pageable page);
-    List<Transaction> findByAssetId(Long symbol);
+    Page<Transaction> findByUsername(String username, Pageable page);
+    Page<Transaction> findByUsernameAndAssetCode(String username, String code, Pageable page);
+    List<Transaction> findByAssetId(Long id);
 }

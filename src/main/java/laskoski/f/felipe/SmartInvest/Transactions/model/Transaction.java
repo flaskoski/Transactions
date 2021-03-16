@@ -3,6 +3,7 @@ package laskoski.f.felipe.SmartInvest.Transactions.model;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -11,6 +12,8 @@ public class Transaction {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
+    @NotBlank
+    String username;
     @ManyToOne
     Asset asset;
     //@NotNull(message = "Number of shares is a mandatory field")
@@ -26,12 +29,21 @@ public class Transaction {
 
     public Transaction(){}
 
-    public Transaction(Asset asset, Integer shares_number, Double price, TransactionType transactionType, LocalDate date){
+    public Transaction(String username, Asset asset, Integer shares_number, Double price, TransactionType transactionType, LocalDate date){
+        this.username = username;
         this.asset = asset;
         this.shares_number = shares_number;
         this.price = price;
         this.type = transactionType;
         this.date = date;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Long getId() {
