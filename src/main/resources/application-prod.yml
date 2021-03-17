@@ -5,8 +5,7 @@ spring:
   jpa:
     generate-ddl: true
     hibernate.ddl-auto: update
-  datasource:
+#  datasource:
 #    url: jdbc:mysql://db-smartinvest.cnkw6talxpfq.sa-east-1.rds.amazonaws.com:3306/smartinvest?useTimezone=true&serverTimezone=UTC
 # To use with Hikari (https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-configure-a-datasource)
-    jdbc-url: jdbc:mysql://db-smartinvest.cnkw6talxpfq.sa-east-1.rds.amazonaws.com:3306/smartinvest?useTimezone=true&serverTimezone=UTC
-    username: root
+#    jdbc-url: jdbc:mysql://tf-db-transactions.cnkw6talxpfq.sa-east-1.rds.amazonaws.com:3306/dbSmartinvest?useTimezone=true&serverTimezone=UTC

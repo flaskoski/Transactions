@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @Profile("prod")
-//exclude error on the attempt to get EC2 instance id
+//exclude error on the attempt to get EC2 instance id (for testing production locally)
 //@EnableAutoConfiguration(exclude = {ContextInstanceDataAutoConfiguration.class})
 public class ProductionConfigurations {
 
@@ -30,13 +30,28 @@ public class ProductionConfigurations {
 //    @Primary
     public HikariDataSource getDataSource() throws Exception {
             return DataSourceBuilder.create().type(HikariDataSource.class)
-                    .password(getDBSecret()).build();
+                    .url("jdbc:mysql://"+ getDBUrl() + "?useTimezone=true&serverTimezone=UTC")
+                    .username(getDBUsername()).password(getDBSecret()).build();
     }
 
-    @Value("${RDS_SMARTINVEST_PASSWORD}")
+
+
+    @Value("${tf-RDS_SMARTINVEST_URL}")
+    private String databaseUrl;
+    String getDBUrl() {
+        return databaseUrl;
+    }
+
+    @Value("${tf-RDS_SMARTINVEST_PASSWORD}")
     private String databaseSecret;
     String getDBSecret() {
         return databaseSecret;
+    }
+
+    @Value("${tf-RDS_SMARTINVEST_username}")
+    private String databaseUsername;
+    String getDBUsername() {
+        return databaseUsername;
     }
 
 //using Secrets manager
