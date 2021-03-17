@@ -27,7 +27,8 @@ public class AssetRepositoryTest {
     @Test
     public void shouldFindAssetByCode(){
         String code = "PETR4";
-        Optional<Asset> asset = assetRepository.findByCode(code);
+        String username = "flaskoski";
+        Optional<Asset> asset = assetRepository.findByUsernameAndCode(username, code);
 
         if(asset.isPresent())
             Assert.assertEquals(asset.get().getCode(), code);

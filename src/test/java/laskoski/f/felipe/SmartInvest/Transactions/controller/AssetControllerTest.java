@@ -32,7 +32,7 @@ public class AssetControllerTest {
     @Test
     public void testA_CreateAsset() throws Exception {
         URI uri = new URI("/assets");
-        String json = "{\"code\": \"TEST11\"}";
+        String json = "{\"code\": \"TEST11\", \"username\": \"test_user\", \"type\": \"Stocks\"}";
 
 //        create new asset
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post(uri)
@@ -56,7 +56,7 @@ public class AssetControllerTest {
 
     @Test
     public void testC_editAsset() throws Exception {
-        String json = "{\"code\": \"TEST12\"}";
+        String json = "{\"code\": \"TEST12\", \"username\": \"test_user\", \"type\": \"Stocks\"}";
 
         mockMvc.perform(MockMvcRequestBuilders.put(pathToNewAsset)
                 .content(json)

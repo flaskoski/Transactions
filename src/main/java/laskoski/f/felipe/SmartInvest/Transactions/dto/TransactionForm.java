@@ -31,7 +31,7 @@ public class TransactionForm {
     }
 
     public Transaction convert(AssetRepository assetRepository) throws NoSuchElementException {
-        Optional<Asset> possibleAsset = assetRepository.findByCode(this.asset);
+        Optional<Asset> possibleAsset = assetRepository.findByUsernameAndCode(this.username, this.asset);
         if(possibleAsset.isPresent())
             return new Transaction(this.username, possibleAsset.get(), this.shares_number,
                     this.price, TransactionType.valueOf(this.type), this.date);
