@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer {
     //it will provide the CORS headers and enable OPTIONS http request that is used by Angular
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");//.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
+        registry.addMapping("/**").allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
 
     }
 }

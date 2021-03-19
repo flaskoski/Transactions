@@ -6,6 +6,15 @@ public class AssetDto {
     String code;
     Long id;
     String type;
+    String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getType() {
         return type;
@@ -27,6 +36,7 @@ public class AssetDto {
         this.code = asset.getCode();
         this.id = asset.getId();
         this.type = asset.getType().name();
+        this.username = asset.getUsername();
     }
     public Long getId() {
         return id;

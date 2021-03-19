@@ -1,8 +1,11 @@
 package laskoski.f.felipe.SmartInvest.Transactions.controller;
 
 
+import laskoski.f.felipe.SmartInvest.Transactions.dto.AssetDto;
+import laskoski.f.felipe.SmartInvest.Transactions.dto.AssetForm;
 import laskoski.f.felipe.SmartInvest.Transactions.dto.TransactionDto;
 import laskoski.f.felipe.SmartInvest.Transactions.dto.TransactionForm;
+import laskoski.f.felipe.SmartInvest.Transactions.model.Asset;
 import laskoski.f.felipe.SmartInvest.Transactions.model.Transaction;
 import laskoski.f.felipe.SmartInvest.Transactions.repository.AssetRepository;
 import laskoski.f.felipe.SmartInvest.Transactions.repository.TransactionRepository;
@@ -19,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -67,8 +71,22 @@ public class TransactionsController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/{id}")
+    @Transactional
+    @CacheEvict(value = "all-transactions", allEntries = true)
+    public ResponseEntity<TransactionDto> updateTransaction(@PathVariable Long id, @RequestBody @Valid TransactionForm transactionForm){
+        Optional<Transaction> transaction = transactionRepository.findById(id);
+        if(transaction.isPresent()) {
+            Transaction updatedTransaction = transactionForm.update(transaction.get(), assetRepository);
+            transactionRepository.save(updatedTransaction);
+            return ResponseEntity.ok(new TransactionDto(updatedTransaction));
+        }
+        else
+            return ResponseEntity.notFound().build();
+    }
 
-    @DeleteMapping("{id}")
+
+    @DeleteMapping("/{id}")
     @CacheEvict(value = "all-transactions", allEntries = true)
     public ResponseEntity<?> removeTransaction(@PathVariable Long id){
         Optional<Transaction> transaction = transactionRepository.findById(id);

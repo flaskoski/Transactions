@@ -55,7 +55,7 @@ public class AssetController {
     }
 
     @PostMapping(path = "/many")
-    public ResponseEntity<TransactionDto> addMultipleAssets(@RequestBody @Valid List<AssetForm> formList, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<AssetDto> addMultipleAssets(@RequestBody @Valid List<AssetForm> formList, UriComponentsBuilder uriBuilder){
         StringBuffer sb = new StringBuffer("Assets IDs added: ");
         formList.forEach(form -> {
             Asset newAsset = form.convert();
@@ -79,13 +79,14 @@ public class AssetController {
         Optional<Asset> asset = assetRepository.findById(id);
         if(asset.isPresent()) {
             Asset updatedAsset = assetForm.update(asset.get());
+            assetRepository.save(updatedAsset);
             return ResponseEntity.ok(new AssetDto(updatedAsset));
         }
         else
             return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> removeAsset(@PathVariable Long id){
         Optional<Asset> asset = assetRepository.findById(id);
         if(asset.isPresent()) {

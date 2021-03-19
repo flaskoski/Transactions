@@ -44,9 +44,17 @@ public class TransactionForm {
         return assetToUpdate;
     }
 
-    public Asset update(Asset assetToUpdate) {
-        assetToUpdate.setCode(this.asset);
-        return assetToUpdate;
+    public Transaction update(Transaction transactionToUpdate, AssetRepository assetRepository) {
+        Optional<Asset> updatedAsset = assetRepository.findByUsernameAndCode(this.username, this.asset);
+        if(updatedAsset.isPresent()) {
+            transactionToUpdate.setAsset(updatedAsset.get());
+            transactionToUpdate.setDate(this.date);
+            transactionToUpdate.setPrice(this.price);
+            transactionToUpdate.setUsername(this.username);
+            transactionToUpdate.setShares_number(this.shares_number);
+            transactionToUpdate.setType(TransactionType.valueOf(this.type));
+        }else throw new NoSuchElementException("Asset of the transaction was not found!");
+        return transactionToUpdate;
     }
 
     public String getUsername() {

@@ -15,6 +15,8 @@ public class TransactionDto {
     Double price;
     String type;
 
+    String username;
+
 
     public TransactionDto(Transaction transaction){
         this.id = transaction.getId();
@@ -23,7 +25,16 @@ public class TransactionDto {
         this.price = transaction.getPrice();
         this.type = transaction.getType().name();
         this.date = transaction.getDate();
+        this.username = transaction.getUsername();
     }
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public Long getId() {
         return id;
     }

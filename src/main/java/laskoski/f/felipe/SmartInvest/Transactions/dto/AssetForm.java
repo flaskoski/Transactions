@@ -53,7 +53,9 @@ public class AssetForm {
     }
 
     public Asset update(Asset assetToUpdate) {
+        assetToUpdate.setUsername(this.username);
         assetToUpdate.setCode(this.code);
+        assetToUpdate.setType(AssetType.valueOf(this.type));
         return assetToUpdate;
     }
 }

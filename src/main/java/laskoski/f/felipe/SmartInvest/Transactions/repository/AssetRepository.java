@@ -11,3 +11,4 @@ public interface AssetRepository extends JpaRepository<Asset, Long> {
     Optional<Asset> findByUsernameAndCode(String username, String code);
     Page<Asset> findByUsername(String username, Pageable pageable);
 }
+
