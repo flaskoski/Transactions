@@ -1,10 +1,7 @@
 package laskoski.f.felipe.SmartInvest.Transactions.controller;
 
 
-import laskoski.f.felipe.SmartInvest.Transactions.dto.AssetDto;
-import laskoski.f.felipe.SmartInvest.Transactions.dto.AssetForm;
-import laskoski.f.felipe.SmartInvest.Transactions.dto.TransactionDto;
-import laskoski.f.felipe.SmartInvest.Transactions.dto.TransactionForm;
+import laskoski.f.felipe.SmartInvest.Transactions.dto.*;
 import laskoski.f.felipe.SmartInvest.Transactions.model.Asset;
 import laskoski.f.felipe.SmartInvest.Transactions.model.Transaction;
 import laskoski.f.felipe.SmartInvest.Transactions.repository.AssetRepository;
@@ -25,6 +22,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -98,6 +96,22 @@ public class TransactionsController {
             return ResponseEntity.notFound().build();
     }
 
+
+    @PostMapping("/filter")
+    public Page<TransactionDto> getTransactionsWithFilter(@RequestParam String username, @RequestBody @Valid TransactionFiltersDto removedOptions, @PageableDefault(sort="asset", direction = Sort.Direction.ASC) Pageable pageable){
+        Page<TransactionDto> page;
+        if(removedOptions.getAsset() == null || removedOptions.getAsset().size() == 0)
+            if(removedOptions.getType() == null  || removedOptions.getType().size() == 0)
+                page = TransactionDto.converter(transactionRepository.findByUsername(username, pageable));
+            else page = TransactionDto.converter(transactionRepository.findByUsernameAndTypeNotIn(username, removedOptions.getType(), pageable));
+        else if(removedOptions.getType() == null  || removedOptions.getType().size() == 0)
+            page = TransactionDto.converter(transactionRepository.findByUsernameAndAssetCodeNotIn(username, removedOptions.getAsset(), pageable));
+        else page = TransactionDto.converter(transactionRepository.findByUsernameAndAssetCodeNotInAndTypeNotIn(username, removedOptions.getAsset(), removedOptions.getType(), pageable));
+
+            removedOptions.setType(new ArrayList<>());
+
+        return page;
+    }
 //    @RequestMapping(path = "/ip", method = RequestMethod.GET)
 //    public String getTransactions() throws Exception {
 //        String ip = InetAddress.getLocalHost().getHostAddress();
